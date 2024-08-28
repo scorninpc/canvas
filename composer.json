@@ -1,9 +1,16 @@
 {
     "name": "scorninpc/canvas",
+    "version": "2.0.0",
+    "type": "library",
+    "description": "Re-work for modern PHP version of Canvas, great lib for image manipulation originally written by Davi Ferreira",
     "authors": [
         {
             "name": "Davi Ferreira",
             "email": "hi@daviferreira.com"
+        },
+        {
+            "name": "Bruno P. Gonçalves",
+            "email": "scorninpc@php.net"
         }
     ],
     "autoload": {
