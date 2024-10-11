@@ -424,6 +424,13 @@ class Canvas
         // cria imagem de destino temporária
         $this->img_temp = imagecreatetruecolor($this->nova_largura, $this->nova_altura);
 
+	// mantem a transparencia
+        imagealphablending($this->img_temp, false);
+        imagesavealpha($this->img_temp, true);
+
+        $corTransparente = imagecolorallocatealpha($this->img_temp, 255, 255, 255, 127);
+        imagefilledrectangle($this->img_temp, 0, 0, $this->nova_largura, $this->nova_altura, $corTransparente);
+	    
         // adiciona cor de fundo à nova imagem
         $this->preencheImagem();
 
