@@ -3,7 +3,7 @@
  *
  * Re-work for modern PHP version of Canvas, great lib for image manipulation originally written by Davi Ferreira <contato@daviferreira.com>
  *
- * @version 2.0.1
+ * @version 2.0.2
  */
 
 class Canvas
