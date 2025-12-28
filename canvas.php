@@ -147,7 +147,7 @@ class Canvas
         $this->largura      = $dimensoes[0];
         $this->altura       = $dimensoes[1];
         /**
-         * 1 = gif, 2 = jpeg, 3 = png, 6 = BMP
+         * 1 = gif, 2 = jpeg, 3 = png, 6 = BMP, 18 = WEBP
          * http://br2.php.net/manual/en/function.exif-imagetype.php
          **/
         $this->formato      = $dimensoes[2];
@@ -226,6 +226,9 @@ class Canvas
             case 'bmp':
                 $this->formato = 6;
                 break;
+            case 'wepp':
+                $this->formato = 18;
+                break;
             default:
                 break;
         }
@@ -257,6 +260,10 @@ class Canvas
             case 6:
                 $this->img      = imagecreatefrombmp($this->origem);
                 $this->extensao = 'bmp';
+                break;
+            case 18:
+                $this->img      = imagecreatefromwebp($this->origem);
+                $this->extensao = 'webp';
                 break;
             default:
                 trigger_error('Arquivo inválido!', E_USER_ERROR);
@@ -820,6 +827,9 @@ class Canvas
                 case 'bmp':
                     $marcadagua = imagecreatefrombmp($imagem);
                     break;
+                case 'webp':
+                    $marcadagua = imagecreatefromwebp($imagem);
+                    break;
                 default:
                     trigger_error('Arquivo de marca d\'água inválido.', E_USER_ERROR);
                     return false;
@@ -1095,6 +1105,15 @@ class Canvas
                 } else {
                     header("Content-type: image/gif");
                     imagegif($this->img);
+                    imagedestroy($this->img);
+                }
+                break;
+            case 'webp':
+                if ($destino) {
+                    imagewebp($this->img, $destino);
+                } else {
+                    header("Content-type: image/webp");
+                    imagewebp($this->img);
                     imagedestroy($this->img);
                 }
                 break;
