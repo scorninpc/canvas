@@ -3,7 +3,7 @@
  *
  * Re-work for modern PHP version of Canvas, great lib for image manipulation originally written by Davi Ferreira <contato@daviferreira.com>
  *
- * @version 2.0.2
+ * @version 2.0.4
  */
 
 class Canvas
@@ -195,6 +195,7 @@ class Canvas
         $this->largura = $largura;
         $this->altura  = $altura;
         $this->img     = imagecreatetruecolor($this->largura, $this->altura);
+        imagealphablending($this->img_temp, false); imagesavealpha  ( $this->img_temp , true ); 
         $cor_fundo     = imagecolorallocate($this->img, $this->rgb[0], $this->rgb[1], $this->rgb[2]);
         imagefill($this->img, 0, 0, $cor_fundo);
         $this->extensao = 'jpg';
@@ -406,6 +407,7 @@ class Canvas
     {
         // cria imagem de destino temporária
         $this->img_temp = imagecreatetruecolor($this->nova_largura, $this->nova_altura);
+        imagealphablending($this->img_temp, false); imagesavealpha  ( $this->img_temp , true ); 
 
         imagecopyresampled($this->img_temp, $this->img, 0, 0, 0, 0, $this->nova_largura, $this->nova_altura, $this->largura, $this->altura);
         $this->img = $this->img_temp;
@@ -430,6 +432,7 @@ class Canvas
     {
         // cria imagem de destino temporária
         $this->img_temp = imagecreatetruecolor($this->nova_largura, $this->nova_altura);
+        imagealphablending($this->img_temp, false); imagesavealpha  ( $this->img_temp , true ); 
 
 	// mantem a transparencia
         imagealphablending($this->img_temp, false);
@@ -486,6 +489,7 @@ class Canvas
 
         // cria imagem de destino temporária
         $this->img_temp = imagecreatetruecolor($dif_w, $dif_h);
+        imagealphablending($this->img_temp, false); imagesavealpha  ( $this->img_temp , true ); 
 
         // Resample
         imagecopyresampled($this->img_temp, $this->img, 0, 0, 0, 0, $dif_w, $dif_h, $this->largura, $this->altura);
@@ -550,6 +554,7 @@ class Canvas
 
         // cria imagem de destino temporária
         $this->img_temp = imagecreatetruecolor($this->nova_largura, $this->nova_altura);
+        imagealphablending($this->img_temp, false); imagesavealpha  ( $this->img_temp , true ); 
 
         // adiciona cor de fundo à nova imagem
         $this->preencheImagem();
@@ -635,6 +640,7 @@ class Canvas
         $h = imagesy($this->img);
 
         $this->img_temp = imagecreatetruecolor($w, $h);
+        imagealphablending($this->img_temp, false); imagesavealpha  ( $this->img_temp , true ); 
 
         // vertical
         if ('v' == $tipo) {
@@ -715,6 +721,7 @@ class Canvas
             }
 
             $this->img_temp = imagecreatetruecolor($largura_texto, $altura_texto);
+            imagealphablending($this->img_temp, false); imagesavealpha  ( $this->img_temp , true ); 
             $cor_fundo      = imagecolorallocate($this->img_temp, $this->rgb[0], $this->rgb[1], $this->rgb[2]);
             imagefill($this->img_temp, 0, 0, $cor_fundo);
 
