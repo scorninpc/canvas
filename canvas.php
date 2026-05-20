@@ -457,12 +457,12 @@ class Canvas
         } else {
             $fator = $this->altura / $this->nova_altura;
         }
-        $dif_w = $this->largura / $fator;
-        $dif_h = $this->altura / $fator;
+        $dif_w = intval($this->largura / $fator);
+        $dif_h = intval($this->altura / $fator);
 
         // copia com o novo tamanho, centralizando
-        $dif_x = ($dif_x - $dif_w) / 2;
-        $dif_y = ($dif_y - $dif_h) / 2;
+        $dif_x = intval(($dif_x - $dif_w) / 2);
+        $dif_y = intval(($dif_y - $dif_h) / 2);
         imagecopyresampled($this->img_temp, $this->img, $dif_x, $dif_y, 0, 0, $dif_w, $dif_h, $this->largura, $this->altura);
         $this->img = $this->img_temp;
     } // fim redimensionaPreenchimento()
@@ -480,11 +480,11 @@ class Canvas
         $ratio_orig = $this->largura / $this->altura;
 
         if ($this->nova_largura / $this->nova_altura > $ratio_orig) {
-            $dif_w = $this->nova_altura * $ratio_orig;
-            $dif_h = $this->nova_altura;
+            $dif_w = intval($this->nova_altura * $ratio_orig);
+            $dif_h = intval($this->nova_altura);
         } else {
-            $dif_w = $this->nova_largura;
-            $dif_h = $this->nova_largura / $ratio_orig;
+            $dif_w = intval($this->nova_largura);
+            $dif_h = intval($this->nova_largura / $ratio_orig);
         }
 
         // cria imagem de destino temporária
@@ -576,7 +576,7 @@ class Canvas
 
             case 'meio':
 
-                $this->pos_x = ($this->largura - $this->nova_largura) / 2;
+                $this->pos_x = intval(($this->largura - $this->nova_largura) / 2);
 
                 break;
 
@@ -604,7 +604,7 @@ class Canvas
 
             case 'meio':
 
-                $this->pos_y = ($this->altura - $this->nova_altura) / 2;
+                $this->pos_y = intval(($this->altura - $this->nova_altura) / 2);
 
                 break;
 
@@ -620,7 +620,7 @@ class Canvas
         $this->posicao_crop[1] = $this->pos_y;
 
         if ($auto)
-            imagecopyresampled($this->img_temp, $this->img, -$this->posicao_crop[0], -$this->posicao_crop[1], 0, 0, $this->posicao_crop[2], $this->posicao_crop[3], $this->largura, $this->altura);
+            imagecopyresampled($this->img_temp, $this->img, -intval($this->posicao_crop[0]), -intval($this->posicao_crop[1]), 0, 0, intval($this->posicao_crop[2]), intval($this->posicao_crop[3]), intval($this->largura), intval($this->altura));
         else
             imagecopyresampled($this->img_temp, $this->img, 0, 0, $this->posicao_crop[0], $this->posicao_crop[1], $this->nova_largura, $this->nova_altura, $this->posicao_crop[2], $this->posicao_crop[3]);
 
